@@ -1,0 +1,155 @@
+		
+		
+		@font-face {
+			font-family: logo;
+			src: url(logo.ttf);
+		}
+
+		@font-face {
+			  font-family: 'fontello';
+			  src: url('fontello.eot?64253751');
+			  src: url('fontello.eot?64253751#iefix') format('embedded-opentype'),
+				   url('fontello.woff?64253751') format('woff'),
+				   url('fontello.ttf?64253751') format('truetype'),
+				   url('fontello.svg?64253751#fontello') format('svg');
+			  font-weight: normal;
+			  font-style: normal;
+			}
+
+		body {
+			margin: 0 auto;
+			overflow: hidden;
+		}
+
+		#bg {
+			background-image: url("bg.jpg");
+			width: 100%;
+			min-height: 800px;
+			padding-top: 0px;
+		}
+
+		#canvas {
+			border: 0;
+			background-color: black;
+			width: 100%;
+			border-radius: 15px 15px 0 0;
+		}
+
+		#logo {
+			font-family: logo;
+			text-align: center;
+			font-size: 6vw;
+			color: #ffffff;
+			text-shadow: 0 0 15px green, 0 0 20px green;
+		}
+
+		.icon {
+			  font-family: "fontello";
+			  font-style: normal;
+			  font-weight: normal;
+			  speak: none;
+			}
+
+		#button {
+			background-color: #4CAF50; /* Green */
+			border: none;
+			color: white;
+			padding: 0.3em 2em;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 14px;
+		}
+
+		#menu-buttons {
+			margin-left: 4px;
+			margin-right: 3px;
+			width: 100%;
+			margin: 0 auto;
+			float: center;
+			text-align: center;
+			padding-bottom: 5px;
+		}
+
+		#button-left-bottom {
+			border-radius: 0 0 0 15px;
+			background-color: #4CAF50; 
+			border: none;
+			color: white;
+			padding: 0.3em 2.5em;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 14px;
+		}
+
+		#button-right-bottom {
+			border-radius: 0 0 15px 0;
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 0.3em 2.5em;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 14px;
+		}
+
+		@media screen and (max-width: 1200px) {
+			body {
+			margin: 0 auto;
+			overflow: visible;
+		}
+
+			#frame1 {
+			border: 1px solid white;
+			border-radius: 15px;
+			height: 400px;
+			width: 40%;
+			margin: 0 auto;
+			opacity: 0.8;
+			background-color: white;
+		}
+
+		#menu-buttons {
+			display: none;
+		}
+
+		}
+
+		@media screen and (min-width: 1201px) {
+			body {
+			margin: 0 auto;
+			overflow: hidden;
+		}
+
+			#frame1 {
+			border: 1px solid white;
+			border-radius: 15px;
+			min-height: 550px;
+			width: 25%;
+			margin: 0 auto;
+			opacity: 0.8;
+			background-color: white;
+		}
+
+		#info {
+			border: 1px solid silver;
+			border-top: 0;
+			border-left: 0;
+			border-right: 0;
+			height: 25px;
+			background-color: silver;
+			margin-bottom: 5px;
+			padding-bottom: 5px;
+
+		}
+
+		#menu {
+			font-family: Calibri;
+			text-align: center;
+			font-size: 1vw;
+			color: gray;
+		}
+
+		}
