@@ -18,8 +18,9 @@ var j = 0;
 	
 	var defaultpx = 24; //przeciwnik
 	var defaultpy = 24;
-	var rozmpx = 40;
-	var rozmpy = 40;
+	var rozmpx = 20;
+	var rozmpy = 20;
+	var przeciwnikRuchX = 1;
 	
 function sleep(miliseconds) {
    var currentTime = new Date().getTime();
@@ -60,6 +61,11 @@ window.addEventListener('keydown', function(event) {
 function gracz() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	przeciwnik();
+	przeciwnik2();
+	przeciwnik3();
+	przeciwnik4();
+	przeciwnik5();
+	przeciwnik6();
     
    
     if (left == 1)
@@ -110,8 +116,85 @@ function przeciwnik() {
 		ctx.fillStyle="blue";
 		ctx.fillRect(defaultpx,defaultpy,rozmpx,rozmpy);
 		ctx.closePath;
+
+		defaultpx += przeciwnikRuchX;
+
+		if (defaultpx <= 0 )
+		{
+			przeciwnikRuchX = -przeciwnikRuchX;
+		}
 	
 	
+}
+
+function przeciwnik2() {
+	
+	
+	ctx.beginPath();
+	ctx.fillStyle="blue";
+	ctx.fillRect(defaultpx + 25,defaultpy,rozmpx,rozmpy);
+	ctx.closePath;
+
+	defaultpx += przeciwnikRuchX;
+
+
+}
+
+function przeciwnik3() {
+	
+	
+	ctx.beginPath();
+	ctx.fillStyle="blue";
+	ctx.fillRect(defaultpx + 50,defaultpy,rozmpx,rozmpy);
+	ctx.closePath;
+
+	defaultpx += przeciwnikRuchX;
+
+
+}
+
+function przeciwnik4() {
+	
+	
+	ctx.beginPath();
+	ctx.fillStyle="blue";
+	ctx.fillRect(defaultpx + 75,defaultpy,rozmpx,rozmpy);
+	ctx.closePath;
+
+	defaultpx += przeciwnikRuchX;
+
+
+}
+
+function przeciwnik5() {
+	
+	
+	ctx.beginPath();
+	ctx.fillStyle="blue";
+	ctx.fillRect(defaultpx + 100,defaultpy,rozmpx,rozmpy);
+	ctx.closePath;
+
+	defaultpx += przeciwnikRuchX;
+
+
+}
+
+function przeciwnik6() {
+	
+	
+	ctx.beginPath();
+	ctx.fillStyle="blue";
+	ctx.fillRect(defaultpx + 125,defaultpy,rozmpx,rozmpy);
+	ctx.closePath;
+
+	defaultpx += przeciwnikRuchX;
+
+	if (defaultpx + 145 >= canvas.width)
+		{
+			przeciwnikRuchX = -przeciwnikRuchX;
+		}
+
+
 }
 
 function strzal() {
