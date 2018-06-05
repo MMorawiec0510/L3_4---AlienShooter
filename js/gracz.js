@@ -392,7 +392,7 @@ function strzal() {
 			}
 			
 			
-			if (score >= 1)
+			if (score >= 6)
 			{
 				theEnd();
 			}
