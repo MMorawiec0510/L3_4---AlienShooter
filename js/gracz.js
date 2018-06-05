@@ -66,6 +66,40 @@ function gracz() {
 	przeciwnik4();
 	przeciwnik5();
 	przeciwnik6();
+
+/*	for (i=0; i<=6; i++)
+
+	{
+		przeciwnik();
+	}
+
+		function przeciwnik() {
+		ctx.beginPath();
+		ctx.fillStyle="blue";
+		ctx.fillRect(defaultpx,defaultpy,rozmpx,rozmpy);
+		ctx.closePath;
+
+		//ruch przeciwnika
+		defaultpx += przeciwnikRuchX;
+
+		//powrót gdy dochodzi do krawędzi ekranu
+		if (defaultpx <= 0 )
+		{
+			przeciwnikRuchX = -przeciwnikRuchX;
+		}
+
+		if (defaultpx + 145 >= canvas.width)
+		{
+			przeciwnikRuchX = -przeciwnikRuchX;
+		}
+	
+		}
+
+		defaultpx =+ 30;
+	}
+*/
+
+	
     
    
     if (left == 1)
@@ -103,7 +137,7 @@ function gracz() {
     ctx.fillStyle="green";
 	ctx.fillRect(x,y,20,20);
 	ctx.closePath;
-}
+
 
 function losuj09() {
     return Math.floor(Math.random() * 10);
@@ -117,30 +151,21 @@ function przeciwnik() {
 		ctx.fillRect(defaultpx,defaultpy,rozmpx,rozmpy);
 		ctx.closePath;
 
+		//ruch przeciwnika
 		defaultpx += przeciwnikRuchX;
 
+		//powrót gdy dochodzi do krawędzi ekranu
 		if (defaultpx <= 0 )
 		{
 			przeciwnikRuchX = -przeciwnikRuchX;
 		}
+
+		
 	
 	
 }
 
 function przeciwnik2() {
-	
-	
-	ctx.beginPath();
-	ctx.fillStyle="blue";
-	ctx.fillRect(defaultpx + 25,defaultpy,rozmpx,rozmpy);
-	ctx.closePath;
-
-	defaultpx += przeciwnikRuchX;
-
-
-}
-
-function przeciwnik3() {
 	
 	
 	ctx.beginPath();
@@ -153,20 +178,7 @@ function przeciwnik3() {
 
 }
 
-function przeciwnik4() {
-	
-	
-	ctx.beginPath();
-	ctx.fillStyle="blue";
-	ctx.fillRect(defaultpx + 75,defaultpy,rozmpx,rozmpy);
-	ctx.closePath;
-
-	defaultpx += przeciwnikRuchX;
-
-
-}
-
-function przeciwnik5() {
+function przeciwnik3() {
 	
 	
 	ctx.beginPath();
@@ -179,22 +191,48 @@ function przeciwnik5() {
 
 }
 
+function przeciwnik4() {
+	
+	
+	ctx.beginPath();
+	ctx.fillStyle="blue";
+	ctx.fillRect(defaultpx + 150,defaultpy,rozmpx,rozmpy);
+	ctx.closePath;
+
+	defaultpx += przeciwnikRuchX;
+
+
+}
+
+function przeciwnik5() {
+	
+	
+	ctx.beginPath();
+	ctx.fillStyle="blue";
+	ctx.fillRect(defaultpx + 200,defaultpy,rozmpx,rozmpy);
+	ctx.closePath;
+
+	defaultpx += przeciwnikRuchX;
+
+
+}
+
 function przeciwnik6() {
 	
 	
 	ctx.beginPath();
 	ctx.fillStyle="blue";
-	ctx.fillRect(defaultpx + 125,defaultpy,rozmpx,rozmpy);
+	ctx.fillRect(defaultpx + 250,defaultpy,rozmpx,rozmpy);
 	ctx.closePath;
 
 	defaultpx += przeciwnikRuchX;
 
-	if (defaultpx + 145 >= canvas.width)
+	if (defaultpx + 275 >= canvas.width)
 		{
 			przeciwnikRuchX = -przeciwnikRuchX;
 		}
 
-
+	
 }
 
 function strzal() {
@@ -248,4 +286,5 @@ function strzal() {
 	}
 	
 	
+}
 }
