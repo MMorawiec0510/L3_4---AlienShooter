@@ -10,8 +10,14 @@ var h = 50; //przyjmuje wysokosc do ktorej leci strzal
 var i = 0;
 var j = 0;
 
+
 	var oldx = 0; //pocisk
 	var oldy = 0;
+	
+	var posx = 0;
+	var posy = 0;
+	
+	var strzela = 0;
 	
 	var oldplayerx = 0; //gracz
 	var oldplayery = 0;
@@ -20,7 +26,19 @@ var j = 0;
 	var defaultpy = 24;
 	var rozmpx = 20;
 	var rozmpy = 20;
+	
 	var przeciwnikRuchX = 1;
+	
+	
+	var idprzeciwnik = 0;
+	
+	var kkk = 0;
+	
+	var kolor = ['blue','blue','blue','blue','blue','blue'];
+	
+	var pdisabled = [0,0,0,0,0,0];
+	
+	const przeciwnicy = [0, 50, 100, 150, 200, 250];
 	
 function sleep(miliseconds) {
    var currentTime = new Date().getTime();
@@ -29,12 +47,14 @@ function sleep(miliseconds) {
    }
 }
 
+function reload() {
+	location.reload();
+}
 
 function draw() {
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
-	setInterval(gracz, 100);
-	
+	window.graczInt = setInterval(gracz, 100);
 }
 
 //var x = canvas.width / 2;
@@ -53,20 +73,43 @@ window.addEventListener('keydown', function(event) {
    
       case 32:
         space = 1;
+		czyStrzela();
+		strzela = 1;
+	
       break;
    
     }
   }, false);
+  
+  
+  /*function uzupelnijTablice() {
+	  var j=0;
+	  for (int i=0; i<przeciwnicy.length; i++) {
+		  j+=60;
+		  przeciwnicy[i] = defaultpx + 60;
+	  }
+	  
+  }*/    /////// Tworzenie przeciwnikow w petli /////
 
+ 
+function stopStrzal() {
+	clearInterval(window.strzalInt);
+}
+  
 function gracz() {
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.clearRect(0, 0, canvas.width, canvas.height);   
+	// --- poprzednia wersja przeciwników ---
+	//przeciwnik();
+	
+	
 	przeciwnik();
 	przeciwnik2();
 	przeciwnik3();
 	przeciwnik4();
 	przeciwnik5();
 	przeciwnik6();
-    
+	
+	
    
     if (left == 1)
     {
@@ -80,16 +123,7 @@ function gracz() {
         right = 0;
     }
 	
-	if (space == 1)
-    {
 	
-	j=0; 
-	stop = 0;
-	var strzalInt = setInterval(strzal, 100);
-	
-    }
-
-
 	if (x > (canvas.width - 25)) {
 		x = x -10;
 		
@@ -109,47 +143,68 @@ function losuj09() {
     return Math.floor(Math.random() * 10);
 }
 
+/*   --- poprzednia wersja przeciwników (M. Morawiec) ---
 function przeciwnik() {
 	
 	
 		ctx.beginPath();
-		ctx.fillStyle="blue";
+		ctx.fillStyle="orange";
+		ctx.fillRect(defaultpx,defaultpy,rozmpx,rozmpy);
+		ctx.closePath;
+		
+		//for (int i=0; i<3; i++) {
+		//ctx.beginPath();
+		//ctx.fillStyle="orange";
+		//ctx.fillRect(przeciwnicy[i],defaultpy,rozmpx,rozmpy);
+		//ctx.closePath;
+		//}  /////// Tworzenie przeciwnikow w petli /////
+	
+	
+	
+}*/  
+
+
+//   --- nowa wersja przeciwników (J. Majewski) ---
+function przeciwnik() {
+	
+	
+		ctx.beginPath();
+		ctx.fillStyle=kolor[0];
 		ctx.fillRect(defaultpx,defaultpy,rozmpx,rozmpy);
 		ctx.closePath;
 
+		//ruch przeciwnika
 		defaultpx += przeciwnikRuchX;
 
+		//powrót gdy dochodzi do krawędzi ekranu
 		if (defaultpx <= 0 )
 		{
 			przeciwnikRuchX = -przeciwnikRuchX;
 		}
-	
-	
+		
 }
 
 function przeciwnik2() {
 	
 	
 	ctx.beginPath();
-	ctx.fillStyle="blue";
-	ctx.fillRect(defaultpx + 25,defaultpy,rozmpx,rozmpy);
+	ctx.fillStyle=kolor[1];
+	ctx.fillRect(defaultpx + 50,defaultpy,rozmpx,rozmpy);
 	ctx.closePath;
 
 	defaultpx += przeciwnikRuchX;
-
-
+	
 }
 
 function przeciwnik3() {
 	
 	
 	ctx.beginPath();
-	ctx.fillStyle="blue";
-	ctx.fillRect(defaultpx + 50,defaultpy,rozmpx,rozmpy);
+	ctx.fillStyle=kolor[2];
+	ctx.fillRect(defaultpx + 100,defaultpy,rozmpx,rozmpy);
 	ctx.closePath;
 
 	defaultpx += przeciwnikRuchX;
-
 
 }
 
@@ -157,25 +212,23 @@ function przeciwnik4() {
 	
 	
 	ctx.beginPath();
-	ctx.fillStyle="blue";
-	ctx.fillRect(defaultpx + 75,defaultpy,rozmpx,rozmpy);
+	ctx.fillStyle=kolor[3];
+	ctx.fillRect(defaultpx + 150,defaultpy,rozmpx,rozmpy);
 	ctx.closePath;
 
 	defaultpx += przeciwnikRuchX;
-
-
+	
 }
 
 function przeciwnik5() {
 	
 	
 	ctx.beginPath();
-	ctx.fillStyle="blue";
-	ctx.fillRect(defaultpx + 100,defaultpy,rozmpx,rozmpy);
+	ctx.fillStyle=kolor[4];
+	ctx.fillRect(defaultpx + przeciwnicy[4],defaultpy,rozmpx,rozmpy);
 	ctx.closePath;
 
 	defaultpx += przeciwnikRuchX;
-
 
 }
 
@@ -183,40 +236,49 @@ function przeciwnik6() {
 	
 	
 	ctx.beginPath();
-	ctx.fillStyle="blue";
-	ctx.fillRect(defaultpx + 125,defaultpy,rozmpx,rozmpy);
+	ctx.fillStyle=kolor[5];
+	ctx.fillRect(defaultpx + przeciwnicy[5],defaultpy,rozmpx,rozmpy);
 	ctx.closePath;
 
 	defaultpx += przeciwnikRuchX;
 
-	if (defaultpx + 145 >= canvas.width)
+	if (defaultpx + 275 >= canvas.width)
 		{
 			przeciwnikRuchX = -przeciwnikRuchX;
 		}
+		
+}
+///koniec przeciwników (Jarek)
 
 
+function czyStrzela() {
+	
+	if (strzela == 1) {
+	//alert("nie mozna strzelic");	
+	} else {
+		j=0;
+		posx = x+8;
+		posy = y-30;
+		clearInterval(window.strzalInt);
+		window.strzalInt = setInterval(strzal, 5);
+	}
 }
 
+
+
 function strzal() {
+
+	if (posy-j <= 0) 
+	{
+		clearInterval(window.strzalInt);
+		strzela = 0;
+		j=0;
+	} else {
+	
+	j = j+5;	
 	
 		
-	var posx = x+8;
-	var posy = y-30;
-	
-	if (j<h || stop == 1)
-	{
-	j = j+5;
-	} else {
-		space = 0;
-		j = 0;
-		stop = 1;
-		clearInterval(strzalInt);
-	}
 
-		ctx.beginPath();
-		ctx.fillStyle="black";
-		ctx.fillRect(posx,posy,4,25);
-		ctx.closePath;
 		
 		//sleep(200);
 		
@@ -225,27 +287,124 @@ function strzal() {
 		ctx.fillRect(posx,posy-j,4,25);
 		ctx.closePath;
 		
-	//document.getElementById("testy1").innerHTML = posx;
-	//document.getElementById("testy2").innerHTML = posy-j;
-	//document.getElementById("testy3").innerHTML = defaultpx;
-	//document.getElementById("testy4").innerHTML = defaultpy;
-	//document.getElementById("testy5").innerHTML = rozmpx;
-	//document.getElementById("testy6").innerHTML = rozmpy;
-	//document.getElementById("score").innerHTML = score;
-	
-	if (posy+j > h) {
-		clearInterval(strzalInt);
-	}
-	
-	if (defaultpx <= posx < defaultpx+rozmpx && posy-j <= defaultpy+rozmpy)
-	{
-		alert("trafiony!");
-	}
-	
-		if (posx > 20)
-	{
-		score++;
-	}
+		
+	//document.getElementById("testy2").innerHTML = przeciwnicy[5];
+	//document.getElementById("testy2").innerHTML = przeciwnicy[1];
+	//document.getElementById("testy3").innerHTML = przeciwnicy[2];
+	//document.getElementById("testy3").innerHTML = przeciwnicy[3];
+	//document.getElementById("testy3").innerHTML = przeciwnicy[4];
+	//document.getElementById("testy3").innerHTML = przeciwnicy[5];
 	
 	
+	
+				if (defaultpy+rozmpy > posy-j > 0) {
+					
+					
+	
+					
+				if (posx > defaultpx+przeciwnicy[0] && posx < defaultpx+przeciwnicy[0]+rozmpx && pdisabled[0] == 0)
+				{
+					score++;
+					strzela = 0;
+					j=0;
+					stopStrzal();
+					clearInterval(window.strzalInt);
+					window.strzalInt = false;
+					kolor[0] = 'black';
+					pdisabled[0] = 1;
+				}	
+
+				if (posx > defaultpx+przeciwnicy[1] && posx < defaultpx+przeciwnicy[1]+rozmpx && pdisabled[1] == 0)
+				{
+					score++;
+					strzela = 0;
+					j=0;
+					stopStrzal();
+					clearInterval(window.strzalInt);
+					window.strzalInt = false;
+					kolor[1] = 'black';
+					pdisabled[1] = 1;
+				}	
+				
+				if (posx > defaultpx+przeciwnicy[2] && posx < defaultpx+przeciwnicy[2]+rozmpx && pdisabled[2] == 0)
+				{
+					score++;
+					strzela = 0;
+					j=0;
+					stopStrzal();
+					clearInterval(window.strzalInt);
+					window.strzalInt = false;
+					kolor[2] = 'black';
+					pdisabled[2] = 1;
+				}	
+				
+				if (posx > defaultpx+przeciwnicy[3] && posx < defaultpx+przeciwnicy[3]+rozmpx && pdisabled[3] == 0)
+				{
+					score++;
+					strzela = 0;
+					j=0;
+					stopStrzal();
+					clearInterval(window.strzalInt);
+					window.strzalInt = false;
+					kolor[3] = 'black';
+					pdisabled[3] = 1;
+				}	
+				
+				if (posx > defaultpx+przeciwnicy[4] && posx < defaultpx+przeciwnicy[4]+rozmpx && pdisabled[4] == 0)
+				{
+					score++;
+					strzela = 0;
+					j=0;
+					stopStrzal();
+					clearInterval(window.strzalInt);
+					window.strzalInt = false;
+					kolor[4] = 'black';
+					pdisabled[4] = 1;
+				}	
+					
+				if (posx > defaultpx+przeciwnicy[5] && posx < defaultpx+przeciwnicy[5]+rozmpx && pdisabled[5] == 0)
+				{
+					score++;
+					strzela = 0;
+					j=0;
+					stopStrzal();
+					clearInterval(window.strzalInt);
+					window.strzalInt = false;
+					kolor[5] = 'black';
+					pdisabled[5] = 1;
+				}	
+				
+				
+				
+				document.getElementById("score").innerHTML = score;
+				
+				
+				/*if (posx > 24 && posx < 64) {
+				score++;
+				strzela = 0;
+				document.getElementById("score").innerHTML = score;
+				j=0;
+				stopStrzal();
+				clearInterval(window.strzalInt);
+				window.strzalInt = false;
+				} */
+				
+			}
+			
+			
+			if (score >= 1)
+			{
+				theEnd();
+			}
+		
+}
+}
+
+
+function theEnd() {
+				clearInterval(window.strzalInt);
+				window.strzalInt = false;
+				clearInterval(window.graczInt);
+				window.graczInt = false;
+				document.getElementById("theend").innerHTML = 'KONIEC GRY';
 }
