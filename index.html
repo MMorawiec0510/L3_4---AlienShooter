@@ -8,15 +8,17 @@
 
 	</head>
 <body onload="draw();">
+		<div id="theend"></div>
 	<div id="bg">
 				<div id="logo">Alien Shooter</div>
+				<center><div id="scorestyle">Score: <b><span id="score">0</span></b></div>
 		<div id="frame1">
 			<script type="text/javascript" src="js/gracz.js" />
 			<!--<script type="text/javascript" src="js/przeciwnik.js" />-->
 		
 	</script>
 		<canvas id="canvas" height="390"></canvas>
-			<div id="info"><div id="menu">&raquo; MENU &laquo; 
+			<div id="info"><div id="menu"><div id="level">LEVEL 1</div> <!--&raquo; MENU &laquo; -->
 			
 			<div style="display: none;">
 			<b>TEST: <span id="testy"></span> : <span id="testy1"></span> : <span id="testy2"></span> : 
@@ -26,10 +28,10 @@
 			</div>
 				<div id="menu-buttons">
 					
-					<a href="#"id="button-left-bottom"><i class="icon icon-pause">&#xe801;</i></a>
-					<a href="#"id="button"><i class="icon icon-arrows-cw">&#xe800;</i></a>
-					<a href="#"id="button"><i class="icon icon-share">&#xf1e0;</i></a>
-					<a href="#"id="button-right-bottom"><i class="icon icon-facebook-official">&#xf230;</i></a>
+					<a href="#" id="button-left-bottom"><i class="icon icon-pause">&#xe801;</i></a>
+					<a href="#" onclick="reload()" id="button"><i class="icon icon-arrows-cw">&#xe800;</i></a>
+					<a href="#" id="button"><i class="icon icon-share">&#xf1e0;</i></a>
+					<a href="#" id="button-right-bottom"><i class="icon icon-facebook-official">&#xf230;</i></a>
 				</div>
 		</div>
 		
