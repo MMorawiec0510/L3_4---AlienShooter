@@ -10,6 +10,8 @@ var h = 50; //przyjmuje wysokosc do ktorej leci strzal
 var i = 0;
 var j = 0;
 
+var predkosc = 100;
+var poziom = 1;
 
 	var oldx = 0; //pocisk
 	var oldy = 0;
@@ -34,9 +36,9 @@ var j = 0;
 	
 	var kkk = 0;
 	
-	var kolor = ['blue','blue','blue','blue','blue','blue'];
+	var kolor = ['gold','black','orange','orange','black','gold'];
 	
-	var pdisabled = [0,0,0,0,0,0];
+	var pdisabled = [0,1,0,0,1,0];
 	
 	const przeciwnicy = [0, 50, 100, 150, 200, 250];
 	
@@ -54,7 +56,7 @@ function reload() {
 function draw() {
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
-	window.graczInt = setInterval(gracz, 100);
+	window.graczInt = setInterval(gracz, predkosc);
 }
 
 //var x = canvas.width / 2;
@@ -94,6 +96,16 @@ window.addEventListener('keydown', function(event) {
  
 function stopStrzal() {
 	clearInterval(window.strzalInt);
+}
+
+
+function rysujPrzeciwnika() {
+	przeciwnik();
+	przeciwnik2();
+	przeciwnik3();
+	przeciwnik4();
+	przeciwnik5();
+	przeciwnik6();
 }
   
 function gracz() {
@@ -163,6 +175,19 @@ function przeciwnik() {
 	
 }*/  
 
+
+
+nowyprzeciwnik(kolor[1], 50);
+function nowyprzeciwnik(kolor, offset) {
+	
+	
+	ctx.beginPath();
+	ctx.fillStyle=kolor;
+	ctx.fillRect(defaultpx + offset,defaultpy,rozmpx,rozmpy);
+	ctx.closePath;
+
+	defaultpx += przeciwnikRuchX;
+}
 
 //   --- nowa wersja przeciwników (J. Majewski) ---
 function przeciwnik() {
@@ -392,13 +417,38 @@ function strzal() {
 			}
 			
 			
-			if (score >= 6)
+			if (score == 4)
 			{
+				
+				document.getElementById("level").innerHTML = 'LEVEL 2';	
+				pdisabled[0] = 0;
+				pdisabled[1] = 0;
+				pdisabled[2] = 0;
+				pdisabled[3] = 0;
+				pdisabled[4] = 0;
+				pdisabled[5] = 0;
+				kolor = ['gold','orange','gold','orange','gold','orange'];
+				//predkosc = 40;
+				//changeLevel();
+				poziom = 2;
+			}
+			
+			if (score >= 10)
+			{
+				
 				theEnd();
 			}
 		
 }
 }
+
+/*
+function changeLevel() {
+				clearInterval(window.graczInt);
+				window.graczInt = false;
+				window.graczInt = setInterval(gracz, predkosc);
+}*/
+
 
 
 function theEnd() {
