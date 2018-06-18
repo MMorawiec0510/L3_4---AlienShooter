@@ -100,12 +100,12 @@ function stopStrzal() {
 
 
 function rysujPrzeciwnika() {
-	przeciwnik();
-	przeciwnik2();
-	przeciwnik3();
-	przeciwnik4();
-	przeciwnik5();
-	przeciwnik6();
+	//przeciwnik();
+	//przeciwnik2();
+	//przeciwnik3();
+	//przeciwnik4();
+	//przeciwnik5();
+	//przeciwnik6();
 }
   
 function gracz() {
@@ -114,12 +114,12 @@ function gracz() {
 	//przeciwnik();
 	
 	
-	przeciwnik();
-	przeciwnik2();
-	przeciwnik3();
-	przeciwnik4();
-	przeciwnik5();
-	przeciwnik6();
+	enemy(kolor[0], 0);
+	enemy(kolor[1], 50);
+	enemy(kolor[2], 100);
+	enemy(kolor[3], 150);
+	enemy(kolor[4], 200);
+	enemy(kolor[5], 250);
 	
 	
    
@@ -177,103 +177,30 @@ function przeciwnik() {
 
 
 
-nowyprzeciwnik(kolor[1], 50);
-function nowyprzeciwnik(kolor, offset) {
-	
-	
-	ctx.beginPath();
-	ctx.fillStyle=kolor;
-	ctx.fillRect(defaultpx + offset,defaultpy,rozmpx,rozmpy);
-	ctx.closePath;
-
-	defaultpx += przeciwnikRuchX;
-}
-
-//   --- nowa wersja przeciwników (J. Majewski) ---
-function przeciwnik() {
-	
+//   --- nowa wersja przeciwników (mm) ---
+function enemy(kolor, offset) {
 	
 		ctx.beginPath();
-		ctx.fillStyle=kolor[0];
-		ctx.fillRect(defaultpx,defaultpy,rozmpx,rozmpy);
+		ctx.fillStyle=kolor;
+		ctx.fillRect(defaultpx + offset,defaultpy,rozmpx,rozmpy);
 		ctx.closePath;
 
-		//ruch przeciwnika
 		defaultpx += przeciwnikRuchX;
-
-		//powrót gdy dochodzi do krawędzi ekranu
+	
 		if (defaultpx <= 0 )
 		{
 			przeciwnikRuchX = -przeciwnikRuchX;
 		}
 		
-}
-
-function przeciwnik2() {
-	
-	
-	ctx.beginPath();
-	ctx.fillStyle=kolor[1];
-	ctx.fillRect(defaultpx + 50,defaultpy,rozmpx,rozmpy);
-	ctx.closePath;
-
-	defaultpx += przeciwnikRuchX;
-	
-}
-
-function przeciwnik3() {
-	
-	
-	ctx.beginPath();
-	ctx.fillStyle=kolor[2];
-	ctx.fillRect(defaultpx + 100,defaultpy,rozmpx,rozmpy);
-	ctx.closePath;
-
-	defaultpx += przeciwnikRuchX;
-
-}
-
-function przeciwnik4() {
-	
-	
-	ctx.beginPath();
-	ctx.fillStyle=kolor[3];
-	ctx.fillRect(defaultpx + 150,defaultpy,rozmpx,rozmpy);
-	ctx.closePath;
-
-	defaultpx += przeciwnikRuchX;
-	
-}
-
-function przeciwnik5() {
-	
-	
-	ctx.beginPath();
-	ctx.fillStyle=kolor[4];
-	ctx.fillRect(defaultpx + przeciwnicy[4],defaultpy,rozmpx,rozmpy);
-	ctx.closePath;
-
-	defaultpx += przeciwnikRuchX;
-
-}
-
-function przeciwnik6() {
-	
-	
-	ctx.beginPath();
-	ctx.fillStyle=kolor[5];
-	ctx.fillRect(defaultpx + przeciwnicy[5],defaultpy,rozmpx,rozmpy);
-	ctx.closePath;
-
-	defaultpx += przeciwnikRuchX;
-
-	if (defaultpx + 275 >= canvas.width)
+		
+		if (defaultpx + 275 >= canvas.width)
 		{
 			przeciwnikRuchX = -przeciwnikRuchX;
 		}
 		
+	
 }
-///koniec przeciwników (Jarek)
+///koniec przeciwników (mm)
 
 
 function czyStrzela() {
