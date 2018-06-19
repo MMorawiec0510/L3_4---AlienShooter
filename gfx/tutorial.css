@@ -1,0 +1,15 @@
+body {
+    background-image: url("bg.jpg");
+}
+
+.tutek {
+    display: flex;
+    text-align: center;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: beige;
+    text-shadow: 0 0 15px green, 0 0 20px green;
+}

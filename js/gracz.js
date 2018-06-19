@@ -478,3 +478,8 @@ function theEnd() {
 				window.graczInt = false;
 				document.getElementById("theend").innerHTML = 'KONIEC GRY';
 }
+
+var myWindow;
+function openpopup() {
+	mywindow = window.open('tutorial.html', '_blank', 'height=600 width=350');
+}
