@@ -280,19 +280,20 @@ function strzal() {
 	
 		
 function trafilem (ile) {
-	if (ile == 1){
+	
+	if (ile == 2) {
+		score = score + 10;
+		kolor[5] = 'black';
+		pdisabled[5] = 1;
+		ile = 0;
+	}	else {
 		kolor[5] = 'red';
 		strzela = 0;
 		j=0;
 		stopStrzal();
 		clearInterval(window.strzalInt);
 		window.strzalInt = false;
-	}	
-	if (ile == 2) {
-		score = score + 10;
-		kolor[5] = 'black';
-		pdisabled[5] = 1;
-	}	
+	}
 }
 		
 		//sleep(200);
