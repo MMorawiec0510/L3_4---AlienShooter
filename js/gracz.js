@@ -13,6 +13,8 @@ var j = 0;
 var predkosc = 100;
 var poziom = 1;
 
+var level = 1;
+
 	var oldx = 0; //pocisk
 	var oldy = 0;
 	
@@ -20,6 +22,10 @@ var poziom = 1;
 	var posy = 0;
 	
 	var strzela = 0;
+	
+	var trafionyboss = 0;
+	
+	var enableboss = 0;
 	
 	var oldplayerx = 0; //gracz
 	var oldplayery = 0;
@@ -29,7 +35,15 @@ var poziom = 1;
 	var rozmpx = 20;
 	var rozmpy = 20;
 	
+	
+	var defaultpxb = 35; //boss
+	var defaultpyb = 35;
+	var rozmpxb = 35;
+	var rozmpyb = 35;
+	
+	
 	var przeciwnikRuchX = 1;
+	var przeciwnikRuchXb = 1;
 	
 	
 	var idprzeciwnik = 0;
@@ -121,6 +135,7 @@ function gracz() {
 	enemy(kolor[4], 200);
 	enemy(kolor[5], 250);
 	
+
 	
    
     if (left == 1)
@@ -178,6 +193,8 @@ function przeciwnik() {
 
 
 //   --- nowa wersja przeciwników (mm) ---
+
+if (enableboss == 0) {
 function enemy(kolor, offset) {
 	
 		ctx.beginPath();
@@ -200,6 +217,33 @@ function enemy(kolor, offset) {
 		
 	
 }
+}
+
+if (enableboss == 1) {
+
+function boss(offset) {
+	
+		ctx.beginPath();
+		ctx.fillStyle="orange";
+		ctx.fillRect(defaultpxb + offset,defaultpyb,rozmpxb,rozmpyb);
+		ctx.closePath;
+
+		defaultpxb += przeciwnikRuchXb;
+	
+		if (defaultpx <= 0 )
+		{
+			przeciwnikRuchXb = -przeciwnikRuchXb;
+		}
+		
+		
+		if (defaultpx + 275 >= canvas.width)
+		{
+			przeciwnikRuchXb = -przeciwnikRuchXb;
+		}
+		
+	
+}
+}
 ///koniec przeciwników (mm)
 
 
@@ -218,6 +262,11 @@ function czyStrzela() {
 
 
 
+
+
+
+
+
 function strzal() {
 
 	if (posy-j <= 0) 
@@ -230,7 +279,21 @@ function strzal() {
 	j = j+5;	
 	
 		
-
+function trafilem (ile) {
+	if (ile == 1){
+		kolor[5] = 'red';
+		strzela = 0;
+		j=0;
+		stopStrzal();
+		clearInterval(window.strzalInt);
+		window.strzalInt = false;
+	}	
+	if (ile == 2) {
+		score = score + 10;
+		kolor[5] = 'black';
+		pdisabled[5] = 1;
+	}	
+}
 		
 		//sleep(200);
 		
@@ -313,8 +376,8 @@ function strzal() {
 					kolor[4] = 'black';
 					pdisabled[4] = 1;
 				}	
-					
-				if (posx > defaultpx+przeciwnicy[5] && posx < defaultpx+przeciwnicy[5]+rozmpx && pdisabled[5] == 0)
+				
+				if (posx > defaultpx+przeciwnicy[5] && posx < defaultpx+przeciwnicy[5]+rozmpx && pdisabled[5] == 0 && level == 1)
 				{
 					score++;
 					strzela = 0;
@@ -325,6 +388,28 @@ function strzal() {
 					kolor[5] = 'black';
 					pdisabled[5] = 1;
 				}	
+				
+				if (posx > defaultpx+przeciwnicy[5] && posx < defaultpx+przeciwnicy[5]+rozmpx && pdisabled[5] == 0 && level == 2 )
+				{
+					pdisabled[5] = 0;
+					trafionyboss++;
+					
+					trafilem(trafionyboss);
+					
+				}
+				/*
+				if (posx > defaultpxb && posx < defaultpxb+rozmpxb && enableboss == 1)
+				{
+					score = score + 50;
+					strzela = 0;
+					j=0;
+					stopStrzal();
+					clearInterval(window.strzalInt);
+					window.strzalInt = false;
+					ctx.clearRect(0, 0, canvas.width, canvas.height); 
+					//kolor[5] = 'black';
+					//pdisabled[5] = 1;
+				}	*/
 				
 				
 				
@@ -354,13 +439,21 @@ function strzal() {
 				pdisabled[3] = 0;
 				pdisabled[4] = 0;
 				pdisabled[5] = 0;
-				kolor = ['gold','orange','gold','orange','gold','orange'];
+				kolor = ['gold','orange','gold','orange','gold','brown'];
 				//predkosc = 40;
 				//changeLevel();
 				poziom = 2;
+				level = 2;
 			}
 			
-			if (score >= 10)
+			//if (score == 10) {
+			//	enableboss = 1;
+			//	boss(0);
+								
+			//}
+			
+			
+			if (score >= 19)
 			{
 				
 				theEnd();
