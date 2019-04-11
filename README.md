@@ -10,4 +10,5 @@ An old, unstable game in JavaScript [HTML + CSS]. Created without experience and
 
 
 Projekt stworzony w trzyosobowym team-ie, w ramach zaliczenia przedmiotu na studiach I stopnia. 
+
 Cel- nauka obsługi GitHub.
